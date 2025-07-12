@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "Marking Assistant",
+  "version": "1.0.0",
+  "description": "AI-powered assignment assessment tool for educators and students",
+  "permissions": ["activeTab", "storage", "scripting"],
+  "host_permissions": ["http://localhost:3000/*", "http://127.0.0.1:3000/*", "https://your-api-domain.com/*"],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["content.css"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "EduAssess AI",
+    "default_icon": {
+      "64": "icons/cute-ghost.png"
+    }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["assessment-panel.html", "icons/*"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

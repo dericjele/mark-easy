@@ -1,0 +1,829 @@
+/* EduAssess AI Chrome Extension Styles */
+
+/* Base Styles */
+.eduassess-popover,
+.eduassess-panel,
+.eduassess-notification,
+.eduassess-error {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #1f2937;
+    box-sizing: border-box;
+}
+
+.eduassess-popover *,
+.eduassess-panel *,
+.eduassess-notification *,
+.eduassess-error * {
+    box-sizing: border-box;
+}
+
+/* Selection Popover */
+.eduassess-popover {
+    position: absolute;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    padding: 0;
+    width: 300px;
+    z-index: 10000;
+    animation: eduassess-fadeIn 0.2s ease-out;
+}
+
+.eduassess-popover-content {
+    padding: 16px;
+}
+
+.eduassess-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.eduassess-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.eduassess-pulse {
+    width: 8px;
+    height: 8px;
+    background: #10b981;
+    border-radius: 50%;
+    animation: eduassess-pulse 2s infinite;
+}
+
+.eduassess-badge {
+    background: #f3f4f6;
+    color: #6b7280;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.eduassess-preview {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 16px;
+    font-style: italic;
+    color: #6b7280;
+    font-size: 13px;
+    line-height: 1.5;
+    max-height: 100px;
+    overflow-y: auto;
+}
+
+.eduassess-actions {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.eduassess-btn {
+    flex: 1;
+    padding: 10px 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+}
+
+.eduassess-btn-primary {
+    background: #3b82f6;
+    color: white;
+}
+
+.eduassess-btn-primary:hover {
+    background: #2563eb;
+    transform: translateY(-1px);
+}
+
+.eduassess-btn-secondary {
+    background: #f3f4f6;
+    color: #374151;
+    border: 1px solid #d1d5db;
+}
+
+.eduassess-btn-secondary:hover {
+    background: #e5e7eb;
+    transform: translateY(-1px);
+}
+
+.eduassess-icon {
+    font-size: 14px;
+}
+
+.eduassess-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: #6b7280;
+}
+
+.eduassess-type-badge {
+    background: #dbeafe;
+    color: #1d4ed8;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+/* Assessment Panel - Fixed Height and Scrolling */
+.eduassess-panel {
+    position: fixed;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    width: 420px;
+    height: 85vh;
+    max-height: 700px;
+    min-height: 400px;
+    overflow: hidden;
+    z-index: 10001;
+    animation: eduassess-slideIn 0.3s ease-out;
+    display: flex;
+    flex-direction: column;
+}
+
+.eduassess-panel-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+}
+
+.eduassess-panel-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: grab;
+    flex-shrink: 0;
+}
+
+.eduassess-panel-header:active {
+    cursor: grabbing;
+}
+
+.eduassess-panel-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.eduassess-logo {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.eduassess-panel-title h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.eduassess-panel-title p {
+    margin: 0;
+    font-size: 12px;
+    opacity: 0.9;
+}
+
+.eduassess-panel-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.eduassess-control-btn {
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    transition: background 0.2s ease;
+}
+
+.eduassess-control-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.eduassess-close {
+    width: 32px;
+    height: 32px;
+    background: rgba(220, 38, 38, 0.2);
+    border: none;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    transition: background 0.2s ease;
+}
+
+.eduassess-close:hover {
+    background: rgba(220, 38, 38, 0.4);
+}
+
+/* Panel Body - Scrollable Container */
+.eduassess-panel-body {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 20px;
+    min-height: 0;
+}
+
+/* Loading State */
+.eduassess-loading {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.eduassess-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid #f3f4f6;
+    border-top: 3px solid #3b82f6;
+    border-radius: 50%;
+    animation: eduassess-spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+/* Results Container - Scrollable */
+.eduassess-results {
+    min-height: 100%;
+}
+
+/* Main Score Display */
+.eduassess-main-scores {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border-radius: 12px;
+    flex-wrap: wrap;
+}
+
+.eduassess-grade-circle {
+    text-align: center;
+    min-width: 120px;
+}
+
+.eduassess-grade-score {
+    font-size: 32px;
+    font-weight: 800;
+    color: #1e293b;
+    line-height: 1;
+}
+
+.eduassess-grade-letter {
+    font-size: 24px;
+    font-weight: 700;
+    color: #3b82f6;
+    margin-top: 4px;
+}
+
+.eduassess-grade-label {
+    font-size: 12px;
+    color: #64748b;
+    margin-top: 8px;
+    font-weight: 500;
+}
+
+.eduassess-detection-scores {
+    display: flex;
+    gap: 12px;
+    flex: 1;
+    min-width: 200px;
+}
+
+.eduassess-detection-item {
+    flex: 1;
+    text-align: center;
+    padding: 16px 12px;
+    background: white;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.eduassess-detection-item.low {
+    border-color: #10b981;
+    background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+}
+
+.eduassess-detection-item.medium {
+    border-color: #f59e0b;
+    background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+}
+
+.eduassess-detection-item.high {
+    border-color: #ef4444;
+    background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%);
+}
+
+.eduassess-detection-icon {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.eduassess-detection-score {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.eduassess-detection-label {
+    font-size: 11px;
+    color: #64748b;
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+.eduassess-detection-risk {
+    font-size: 10px;
+    font-weight: 500;
+    margin-top: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.eduassess-detection-item.low .eduassess-detection-risk {
+    color: #059669;
+}
+
+.eduassess-detection-item.medium .eduassess-detection-risk {
+    color: #d97706;
+}
+
+.eduassess-detection-item.high .eduassess-detection-risk {
+    color: #dc2626;
+}
+
+.eduassess-detection-sources {
+    font-size: 9px;
+    color: #6b7280;
+    margin-top: 2px;
+}
+
+/* High Risk Warnings */
+.eduassess-warnings {
+    margin-bottom: 20px;
+}
+
+.eduassess-warning {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    border-left: 4px solid;
+}
+
+.eduassess-warning.ai-warning {
+    background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%);
+    border-left-color: #ef4444;
+}
+
+.eduassess-warning.plagiarism-warning {
+    background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%);
+    border-left-color: #ef4444;
+}
+
+.eduassess-warning-icon {
+    font-size: 20px;
+    margin-top: 2px;
+}
+
+.eduassess-warning-content {
+    flex: 1;
+}
+
+.eduassess-warning-content strong {
+    color: #dc2626;
+    font-weight: 700;
+}
+
+.eduassess-warning-content p {
+    margin: 4px 0 0 0;
+    font-size: 13px;
+    color: #7f1d1d;
+    line-height: 1.4;
+}
+
+/* Tabs - Fixed Position */
+.eduassess-tabs {
+    display: flex;
+    border-bottom: 2px solid #e5e7eb;
+    margin-bottom: 20px;
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 10;
+    padding-top: 10px;
+    margin-top: -10px;
+}
+
+.eduassess-tab {
+    flex: 1;
+    padding: 12px 16px;
+    background: none;
+    border: none;
+    font-size: 13px;
+    font-weight: 600;
+    color: #6b7280;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-bottom: 2px solid transparent;
+}
+
+.eduassess-tab:hover {
+    color: #374151;
+    background: #f9fafb;
+}
+
+.eduassess-tab.active {
+    color: #3b82f6;
+    border-bottom-color: #3b82f6;
+    background: #f8fafc;
+}
+
+/* Tab Content - Scrollable */
+.eduassess-tab-content {
+    display: none;
+    overflow-y: auto;
+    max-height: none;
+}
+
+.eduassess-tab-content.active {
+    display: block;
+}
+
+/* Feedback Grid */
+.eduassess-feedback-grid {
+    display: grid;
+    gap: 16px;
+}
+
+.eduassess-feedback-section {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 16px;
+}
+
+.eduassess-feedback-section.strengths {
+    border-left: 4px solid #10b981;
+}
+
+.eduassess-feedback-section.improvements {
+    border-left: 4px solid #f59e0b;
+}
+
+.eduassess-feedback-section.recommendations {
+    border-left: 4px solid #3b82f6;
+}
+
+.eduassess-feedback-section h4 {
+    margin: 0 0 12px 0;
+    font-size: 14px;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.eduassess-feedback-section ul {
+    margin: 0;
+    padding-left: 16px;
+}
+
+.eduassess-feedback-section li {
+    margin-bottom: 8px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #374151;
+}
+
+/* Detailed Analysis */
+.eduassess-detailed-grid {
+    display: grid;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.eduassess-detail-item {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 16px;
+}
+
+.eduassess-detail-item h5 {
+    margin: 0 0 8px 0;
+    font-size: 13px;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.eduassess-detail-item p {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #374151;
+}
+
+/* Sentence Analysis */
+.eduassess-sentences {
+    margin-top: 20px;
+}
+
+.eduassess-sentences h4 {
+    margin: 0 0 16px 0;
+    font-size: 14px;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.eduassess-sentence {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 12px;
+    border-left: 4px solid;
+}
+
+.eduassess-sentence.positive {
+    border-left-color: #10b981;
+    background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 100%);
+}
+
+.eduassess-sentence.warning {
+    border-left-color: #f59e0b;
+    background: linear-gradient(135deg, #fffbeb 0%, #fefce8 100%);
+}
+
+.eduassess-sentence.error {
+    border-left-color: #ef4444;
+    background: linear-gradient(135deg, #fef2f2 0%, #fef7f7 100%);
+}
+
+.eduassess-sentence-text {
+    font-style: italic;
+    color: #6b7280;
+    font-size: 12px;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.eduassess-sentence-feedback {
+    font-size: 13px;
+    color: #374151;
+    line-height: 1.4;
+}
+
+/* Info Grid */
+.eduassess-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.eduassess-info-item {
+    background: #f9fafb;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+.eduassess-info-item strong {
+    color: #1f2937;
+    font-weight: 600;
+}
+
+/* Export Section */
+.eduassess-export {
+    text-align: center;
+    padding-top: 16px;
+    border-top: 1px solid #e5e7eb;
+    margin-top: 20px;
+}
+
+/* Notifications */
+.eduassess-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #10b981;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 10002;
+    font-weight: 500;
+    animation: eduassess-slideInRight 0.3s ease-out;
+}
+
+.eduassess-error {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #ef4444;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 10002;
+    font-weight: 500;
+    animation: eduassess-slideInRight 0.3s ease-out;
+}
+
+.eduassess-error-panel {
+    text-align: center;
+    padding: 20px;
+}
+
+.eduassess-error-panel h3 {
+    color: #dc2626;
+    margin-bottom: 16px;
+}
+
+.eduassess-debug {
+    margin: 16px 0;
+    text-align: left;
+}
+
+.eduassess-debug summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: #3b82f6;
+    margin-bottom: 8px;
+}
+
+.eduassess-debug ul {
+    margin: 8px 0;
+    padding-left: 20px;
+}
+
+.eduassess-debug code {
+    background: #f3f4f6;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-family: "Monaco", "Menlo", monospace;
+}
+
+/* Animations */
+@keyframes eduassess-fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes eduassess-slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes eduassess-slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes eduassess-pulse {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+@keyframes eduassess-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .eduassess-panel {
+        width: calc(100vw - 20px);
+        height: calc(100vh - 40px);
+        left: 10px !important;
+        right: 10px !important;
+        top: 20px !important;
+        max-height: none;
+    }
+
+    .eduassess-main-scores {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .eduassess-detection-scores {
+        width: 100%;
+    }
+
+    .eduassess-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .eduassess-popover {
+        width: calc(100vw - 40px);
+        max-width: 300px;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .eduassess-popover,
+    .eduassess-panel {
+        background: #1f2937;
+        border-color: #374151;
+        color: #f9fafb;
+    }
+
+    .eduassess-preview {
+        background: #374151;
+        border-color: #4b5563;
+        color: #d1d5db;
+    }
+
+    .eduassess-btn-secondary {
+        background: #374151;
+        color: #f9fafb;
+        border-color: #4b5563;
+    }
+
+    .eduassess-feedback-section,
+    .eduassess-detail-item {
+        background: #374151;
+        border-color: #4b5563;
+    }
+
+    .eduassess-info-item {
+        background: #374151;
+    }
+
+    .eduassess-tabs {
+        background: #1f2937;
+    }
+}
